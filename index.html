@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <style>
+
+/* Just for visualising the overlay block*/
+.visible-overlay {
+    background-color:rgba(0, 0, 0, 0.25);
+}
+
+/* as is from tailwindcss */
+.mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.grid {
+    display: grid;
+}
+
+.grid-rows-2 {
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+}
+
+.grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.col-span-2 {
+    grid-column: span 2 / span 2;
+}
+
+.row-span-2 {
+    grid-row: span 2 / span 2;
+}
+
+.col-start-1 {
+    grid-column-start: 1;
+}
+
+.col-start-2 {
+    grid-column-start: 2;
+}
+
+.row-start-1 {
+    grid-row-start: 1;
+}
+
+.row-start-2 {
+    grid-row-start: 2;
+}
+
+.text-center {
+    text-align: center;
+}
+    </style>
+  </head>
+  <body>
+    <!-- fine if flex-direction is column -->
+    <div
+      style="display: flex;"
+    >
+
+      <!-- fine if max-width removed or window/viewport is smaller than 768px -->
+      <div
+        class="mx-auto w-full"
+        style="max-width: 768px"
+      >
+        <div class="w-full grid grid-rows-2">
+
+          <!-- remove the following div to prevent the issue from occurring -->
+          <!-- seems to be for relative units only - checked em, rem, ch, px -->
+          <!-- padding for bottom/left/right doesn't appear to cause the problem -->
+          <div
+            class="col-start-1 row-start-2 visible-overlay"
+            style="padding-top: 5rem;"
+          >
+            <span>OVERLAY</span>
+          </div>
+
+          <!-- fine if flex-direction is column -->
+          <div
+            class="row-start-1 col-start-1 row-span-2"
+            style="display: flex"
+          >
+
+            <!-- repeatable block/component -->
+            <div
+              class="grid grid-rows-2 text-center w-full grid-cols-2"
+              style="height: 100%; align-items: baseline"
+            >
+              <!-- affected div -->
+              <!-- setting width: 100% doesn't alleviate the issue-->
+              <div class="row-start-1 col-span-2">
+                <h1>CONTENT</h1>
+              </div>
+
+              <!-- affected div -->
+              <!-- setting width: 100% doesn't alleviate the issue-->
+              <div class="row-start-2">
+                <span>MORE CONTENT</span>
+              </div>
+
+              <!-- affected div -->
+              <!-- setting width: 100% doesn't alleviate the issue-->
+              <div class="row-start-2">
+                <span>OTHER CONTENT</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
