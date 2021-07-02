@@ -1,5 +1,7 @@
 # bug-20201120-chromium-chrome-css-render
 
+[Chromium bug report](https://bugs.chromium.org/p/chromium/issues/detail?id=1151415&q=&can=4)
+
 Seeing a problem where the use of nested grid/flex (specifically not flex-direction: column), a max-width in px which the
 viewport is larger than and the use of a relative padding-top. It appears to cause sibling blocks to the padding-top element
 to render incorrectly when the browser is resized in Chrome and Chromium
